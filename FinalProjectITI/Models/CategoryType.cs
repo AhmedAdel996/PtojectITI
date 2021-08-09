@@ -17,5 +17,7 @@ namespace FinalProjectITI.Models
         public string CategoryType_Description { get; set; }
 
         public virtual ICollection<ProductCategoryTypes> ProductCategoryTypes { get; set; }
+
+        public virtual ICollection<BlogCategoryTypes> BlogCategoryTypes { get; set; }
     }
 }

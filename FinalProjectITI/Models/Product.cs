@@ -33,5 +33,7 @@ namespace FinalProjectITI.Models
         public virtual ICollection<ProductCategoryTypes> ProductCategoryTypes { get; set; }
 
         public virtual ICollection<UserProducts> UserProducts { get; set; }
+
+        public virtual ICollection<UserWishList> UserWishLists { get; set; }
     }
 }

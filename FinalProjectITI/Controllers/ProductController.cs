@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FinalProjectITI.Data;
+using Microsoft.AspNetCore.Mvc;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,6 @@ namespace FinalProjectITI.Controllers
         {
             return PartialView("_ViewCategories");
         }
-
 
         public IActionResult ShowProducts()
         {

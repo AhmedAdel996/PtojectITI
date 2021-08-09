@@ -12,9 +12,17 @@ namespace FinalProjectITI.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Payment_ID { get; set; }
-        public string Payment_Method { get; set; }
-        public int Payment_Status { get; set; }
+        
+        public int? Visa_ID { get; set; }
+
+        public int? Paypal_ID { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+
+        [ForeignKey("Paypal_ID")]
+        public virtual Paypal Paypal { get; set; }
+
+        [ForeignKey("Visa_ID")]
+        public Visa Visa { get; set; }
     }
 }

@@ -19,6 +19,52 @@ namespace FinalProjectITI.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FinalProjectITI.Models.Blog", b =>
+                {
+                    b.Property<int>("Blog_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Blog_Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Blog_Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Blog_Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Blog_ID");
+
+                    b.ToTable("Blog");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.BlogCategoryTypes", b =>
+                {
+                    b.Property<int>("BlogCategoryTypes_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Blog_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryType_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlogCategoryTypes_ID");
+
+                    b.HasIndex("Blog_ID");
+
+                    b.HasIndex("CategoryType_ID");
+
+                    b.ToTable("BlogCategoryTypes");
+                });
+
             modelBuilder.Entity("FinalProjectITI.Models.Category", b =>
                 {
                     b.Property<int>("Category_ID")
@@ -57,6 +103,33 @@ namespace FinalProjectITI.Data.Migrations
                     b.HasKey("CategoryType_ID");
 
                     b.ToTable("CategoryType");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Comment", b =>
+                {
+                    b.Property<int>("Comment_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Blog_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Customer_ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Comment_ID");
+
+                    b.HasIndex("Blog_ID");
+
+                    b.HasIndex("Customer_ID");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Order", b =>
@@ -125,15 +198,35 @@ namespace FinalProjectITI.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Payment_Method")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Paypal_ID")
+                        .HasColumnType("int");
 
-                    b.Property<int>("Payment_Status")
+                    b.Property<int?>("Visa_ID")
                         .HasColumnType("int");
 
                     b.HasKey("Payment_ID");
 
+                    b.HasIndex("Paypal_ID");
+
+                    b.HasIndex("Visa_ID");
+
                     b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Paypal", b =>
+                {
+                    b.Property<int>("Paypal_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Account")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Paypal_ID");
+
+                    b.ToTable("Paypal");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Product", b =>
@@ -272,6 +365,50 @@ namespace FinalProjectITI.Data.Migrations
                     b.HasIndex("Product_ID");
 
                     b.ToTable("UserProducts");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.UserWishList", b =>
+                {
+                    b.Property<int>("UserWishList_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Customer_ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Product_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserWishList_ID");
+
+                    b.HasIndex("Customer_ID");
+
+                    b.HasIndex("Product_ID");
+
+                    b.ToTable("UserWishList");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Visa", b =>
+                {
+                    b.Property<int>("Visa_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Expire_Date")
+                        .HasColumnType("date");
+
+                    b.Property<int>("SecureCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Visa_Number")
+                        .HasColumnType("int");
+
+                    b.HasKey("Visa_ID");
+
+                    b.ToTable("Visa");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -474,6 +611,40 @@ namespace FinalProjectITI.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("FinalProjectITI.Models.BlogCategoryTypes", b =>
+                {
+                    b.HasOne("FinalProjectITI.Models.Blog", "Blog")
+                        .WithMany("BlogCategoryTypes")
+                        .HasForeignKey("Blog_ID");
+
+                    b.HasOne("FinalProjectITI.Models.CategoryType", "CategoryType")
+                        .WithMany("BlogCategoryTypes")
+                        .HasForeignKey("CategoryType_ID");
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("CategoryType");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Comment", b =>
+                {
+                    b.HasOne("FinalProjectITI.Models.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("Blog_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
+                        .WithMany()
+                        .HasForeignKey("Customer_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("FinalProjectITI.Models.Order", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
@@ -516,6 +687,21 @@ namespace FinalProjectITI.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("FinalProjectITI.Models.Payment", b =>
+                {
+                    b.HasOne("FinalProjectITI.Models.Paypal", "Paypal")
+                        .WithMany("Payments")
+                        .HasForeignKey("Paypal_ID");
+
+                    b.HasOne("FinalProjectITI.Models.Visa", "Visa")
+                        .WithMany("Payments")
+                        .HasForeignKey("Visa_ID");
+
+                    b.Navigation("Paypal");
+
+                    b.Navigation("Visa");
+                });
+
             modelBuilder.Entity("FinalProjectITI.Models.Product", b =>
                 {
                     b.HasOne("FinalProjectITI.Models.Category", "Category")
@@ -550,6 +736,25 @@ namespace FinalProjectITI.Data.Migrations
 
                     b.HasOne("FinalProjectITI.Models.Product", "Product")
                         .WithMany("UserProducts")
+                        .HasForeignKey("Product_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.UserWishList", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
+                        .WithMany()
+                        .HasForeignKey("Customer_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProjectITI.Models.Product", "Product")
+                        .WithMany("UserWishLists")
                         .HasForeignKey("Product_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -610,6 +815,13 @@ namespace FinalProjectITI.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FinalProjectITI.Models.Blog", b =>
+                {
+                    b.Navigation("BlogCategoryTypes");
+
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("FinalProjectITI.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -617,6 +829,8 @@ namespace FinalProjectITI.Data.Migrations
 
             modelBuilder.Entity("FinalProjectITI.Models.CategoryType", b =>
                 {
+                    b.Navigation("BlogCategoryTypes");
+
                     b.Navigation("ProductCategoryTypes");
                 });
 
@@ -630,6 +844,11 @@ namespace FinalProjectITI.Data.Migrations
                     b.Navigation("Orders");
                 });
 
+            modelBuilder.Entity("FinalProjectITI.Models.Paypal", b =>
+                {
+                    b.Navigation("Payments");
+                });
+
             modelBuilder.Entity("FinalProjectITI.Models.Product", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -637,11 +856,18 @@ namespace FinalProjectITI.Data.Migrations
                     b.Navigation("ProductCategoryTypes");
 
                     b.Navigation("UserProducts");
+
+                    b.Navigation("UserWishLists");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Shipping", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Visa", b =>
+                {
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }
