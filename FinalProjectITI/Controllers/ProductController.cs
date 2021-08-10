@@ -1,6 +1,8 @@
 ﻿using FinalProjectITI.Data;
+using FinalProjectITI.Models;
+using FinalProjectITI.Services;
 using Microsoft.AspNetCore.Mvc;
-using PagedList;
+using X.PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +12,23 @@ namespace FinalProjectITI.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        private readonly IBaseService<Product> baseService;
 
-        public IActionResult ShowCategoris()
+        public ProductController(IBaseService<Product> baseService)
         {
-            return PartialView("_ViewCategories");
+            this.baseService = baseService;
         }
-
-        public IActionResult ShowProducts()
+        public IActionResult Index(int? page)
         {
-            return PartialView("_ViewProducts");
+            var pageNumber = page ?? 1;
+            var pageSize = 16;
+            var items = baseService.GetAll().ToPagedList(pageNumber, pageSize);
+            return View(items);
         }
-
+        public IActionResult ProductDetails(int id)
+        {
+            Product product = baseService.GetByID(id);
+            return View(product);
+        }
     }
 }

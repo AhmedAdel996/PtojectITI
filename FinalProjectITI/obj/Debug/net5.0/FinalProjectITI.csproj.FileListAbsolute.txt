@@ -165,7 +165,6 @@ F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Shared\_ViewCategories.cshtml.g.cs
-F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Shared\_ViewProducts.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\FinalProjectITI.RazorTargetAssemblyInfo.cache
@@ -260,3 +259,8 @@ F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
+F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\bin\Debug\net5.0\JetBrains.Annotations.dll
+F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\bin\Debug\net5.0\X.PagedList.dll
+F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
+F:\ITI\Projects\Final Project\PtojectITI\FinalProjectITI\obj\Debug\net5.0\Razor\Views\Product\ProductDetails.cshtml.g.cs

@@ -1,4 +1,6 @@
 using FinalProjectITI.Data;
+using FinalProjectITI.Models;
+using FinalProjectITI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,7 +36,10 @@ namespace FinalProjectITI
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
+
+            services.AddTransient(typeof(IBaseService<Product>), typeof(ProductService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
