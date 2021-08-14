@@ -1,5 +1,6 @@
 ﻿using FinalProjectITI.Data;
 using FinalProjectITI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,9 @@ namespace FinalProjectITI.Services
 
         public List<Product> GetAll()
         {
-            List<Product> products = context.Products.ToList();
+            List<Product> products = context.Products.Include(m => m.Images).ToList();
             return products;
         }
-
         public Product GetByID(int id)
         {
             Product product = context.Products.FirstOrDefault(prod => prod.Product_ID == id);
@@ -52,7 +52,6 @@ namespace FinalProjectITI.Services
             product.Category_ID = model.Category_ID;
             product.Description = model.Description;
             product.Product_Color = model.Product_Color;
-            product.Product_Image = model.Product_Image;
             product.Product_Name = model.Product_Name;
             product.Product_Price = model.Product_Price;
             product.Product_Size = model.Product_Size;

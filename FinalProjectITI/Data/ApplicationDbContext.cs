@@ -16,24 +16,26 @@ namespace FinalProjectITI.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
+            
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<CategoryType> CategoryTypes { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<Product>  Products { get; set; }
-        public virtual DbSet<ProductCategoryTypes> ProductCategoryTypes { get; set; }
-        public virtual DbSet<Shipping> Shippings { get; set; }
-        public virtual DbSet<UserProducts> UserProducts { get; set; }
-        public virtual DbSet<Blog> Blogs { get; set; }
-        public virtual DbSet<BlogCategoryTypes> BlogCategoryTypes { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Paypal> Paypals { get; set; }
-        public virtual DbSet<UserWishList> UserWishLists { get; set; }
-        public virtual DbSet<Visa> Visas { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("data source=DESKTOP-9D1AT3T;initial catalog=FinalProjectITI;integrated security=True;");
+        }
 
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Product>  Products { get; set; }
+        public DbSet<ProductTags> ProductTags { get; set; }
+        public DbSet<Shipping> Shippings { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogTags> BlogTags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<UserWishList> UserWishLists { get; set; }
+        public DbSet<Images> Images { get; set; }
     }
 }

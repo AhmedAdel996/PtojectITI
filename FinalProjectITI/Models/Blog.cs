@@ -21,7 +21,7 @@ namespace FinalProjectITI.Models
         [Column(TypeName = "date")]
         public DateTime Blog_Date { get; set; }
 
-        public virtual List<BlogCategoryTypes> BlogCategoryTypes { get; set; }
-        public virtual List<Comment> Comments { get; set; }
+        public virtual ICollection<BlogTags> BlogTags { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

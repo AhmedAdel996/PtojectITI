@@ -7,22 +7,19 @@ using System.Threading.Tasks;
 
 namespace FinalProjectITI.Models
 {
+    public enum PaymentMethod
+    {
+        HandCash = 0,
+        Paypal = 1,
+    }
     [Table("Payment")]
     public class Payment
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Payment_ID { get; set; }
-        
-        public int? Visa_ID { get; set; }
 
-        public int? Paypal_ID { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-
-        [ForeignKey("Paypal_ID")]
-        public virtual Paypal Paypal { get; set; }
-
-        [ForeignKey("Visa_ID")]
-        public Visa Visa { get; set; }
     }
 }

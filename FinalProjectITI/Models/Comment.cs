@@ -22,8 +22,11 @@ namespace FinalProjectITI.Models
 
         public int Blog_ID { get; set; }
 
+        [Column(TypeName ="date")]
+        public DateTime Comment_Date { get; set; }
+
         [ForeignKey("Blog_ID")]
-        public virtual  Blog Blog { get; set; }
+        public virtual Blog Blog { get; set; }
 
         [ForeignKey("Customer_ID")]
         public virtual IdentityUser Customer { get; set; }

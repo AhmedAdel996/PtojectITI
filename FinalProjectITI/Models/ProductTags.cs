@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace FinalProjectITI.Models
 {
-    [Table("ProductCategoryTypes")]
-    public class ProductCategoryTypes
+    public class ProductTags
     {
-        [Key , DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductCategoryTypes_ID { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ProductTags_ID { get; set; }
         public int? Product_ID { get; set; }
-        public int? CategoryType_ID { get; set; }
+        public int? Tag_ID { get; set; }
 
         [ForeignKey("Product_ID")]
         public virtual Product Product { get; set; }
 
-        [ForeignKey("CategoryType_ID")]
-        public virtual CategoryType CategoryType { get; set; }
+        [ForeignKey("Tag_ID")]
+        public virtual Tags Tags { get; set; }
     }
 }

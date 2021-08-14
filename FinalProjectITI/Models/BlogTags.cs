@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace FinalProjectITI.Models
 {
-    [Table("Paypal")]
-    public class Paypal
+    public class BlogTags
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Paypal_ID { get; set; }
+        public int BlogTags_ID { get; set; }
+        public int? Blog_ID { get; set; }
+        public int? Tag_ID { get; set; }
 
-        [Required , EmailAddress]
-        public string Account { get; set; }
+        [ForeignKey("Blog_ID")]
+        public virtual Blog Blog { get; set; }
 
-        public virtual ICollection<Payment> Payments { get; set; }
+        [ForeignKey("Tag_ID")]
+        public virtual Tags Tags { get; set; }
     }
 }

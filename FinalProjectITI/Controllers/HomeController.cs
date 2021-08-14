@@ -1,4 +1,5 @@
-﻿using FinalProjectITI.Models;
+﻿using FinalProjectITI.Data;
+using FinalProjectITI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ namespace FinalProjectITI.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         public IActionResult Index()
         {
             return View();
