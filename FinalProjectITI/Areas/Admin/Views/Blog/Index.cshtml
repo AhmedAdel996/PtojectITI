@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FinalProjectITI.Models.Blog>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog_Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog_Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blog_Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blog_Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blog_Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Blog_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Blog_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Blog_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

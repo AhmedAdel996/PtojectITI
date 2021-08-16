@@ -16,6 +16,7 @@ namespace FinalProjectITI.Models
         public int Product_ID { get; set; }
         [Range(1,20)]
         public int Product_Quantity { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Total_price { get; set; }
 
         [ForeignKey("Order_ID")]

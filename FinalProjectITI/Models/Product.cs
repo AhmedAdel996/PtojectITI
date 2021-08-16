@@ -27,6 +27,7 @@ namespace FinalProjectITI.Models
         public int? Category_ID { get; set; }
         public string Description { get; set; }
         [Required]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Product_Price { get; set; }
         public int? Images_ID { get; set; }
         [Required]

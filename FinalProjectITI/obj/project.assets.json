@@ -7571,23 +7571,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ZIAD\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Ahmed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
+      "projectUniqueName": "F:\\iti\\Final Project ITI\\Clone2Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
       "projectName": "FinalProjectITI",
-      "projectPath": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
-      "packagesPath": "C:\\Users\\ZIAD\\.nuget\\packages\\",
-      "outputPath": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\obj\\",
+      "projectPath": "F:\\iti\\Final Project ITI\\Clone2Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
+      "packagesPath": "C:\\Users\\Ahmed\\.nuget\\packages\\",
+      "outputPath": "F:\\iti\\Final Project ITI\\Clone2Project\\PtojectITI\\FinalProjectITI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ZIAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7664,7 +7660,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
