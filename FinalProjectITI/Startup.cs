@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-using FinalProjectITI.Data;
-=======
 ﻿using FinalProjectITI.Data;
 using FinalProjectITI.Models;
->>>>>>> a47b3b2eab6722e476942b26c6519005e20c6625
 using FinalProjectITI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +37,6 @@ namespace FinalProjectITI
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-<<<<<<< HEAD
             services.Configure<IdentityOptions>(opts =>
             {
                 opts.User.RequireUniqueEmail = true;
@@ -51,15 +46,12 @@ namespace FinalProjectITI
             services.AddControllersWithViews();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddRazorPages();
-=======
 
-            services.AddControllersWithViews();
 
             services.AddTransient(typeof(IBaseService<Product>), typeof(ProductService));
             services.AddTransient<IBaseService<Category>, CategoryService>();
             services.AddTransient(typeof(IBaseService<Images>), typeof(ImageService));
             services.AddTransient(typeof(IBaseService<Blog>), typeof(BlogService));
->>>>>>> a47b3b2eab6722e476942b26c6519005e20c6625
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
