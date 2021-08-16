@@ -36,7 +36,7 @@ namespace FinalProjectITI.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage();
+                return RedirectToPage("Index");
             }
         }
     }

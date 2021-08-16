@@ -1,24 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj": {}
+    "D:\\programs\\ITI 3months\\finalProject\\New folder\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj": {}
   },
   "projects": {
-    "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj": {
+    "D:\\programs\\ITI 3months\\finalProject\\New folder\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
+        "projectUniqueName": "D:\\programs\\ITI 3months\\finalProject\\New folder\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
         "projectName": "FinalProjectITI",
-        "projectPath": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
-        "packagesPath": "C:\\Users\\ZIAD\\.nuget\\packages\\",
-        "outputPath": "F:\\ITI\\Projects\\Final Project\\PtojectITI\\FinalProjectITI\\obj\\",
+        "projectPath": "D:\\programs\\ITI 3months\\finalProject\\New folder\\PtojectITI\\FinalProjectITI\\FinalProjectITI.csproj",
+        "packagesPath": "C:\\Users\\ZeyadaNet\\.nuget\\packages\\",
+        "outputPath": "D:\\programs\\ITI 3months\\finalProject\\New folder\\PtojectITI\\FinalProjectITI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\ZIAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ZeyadaNet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -86,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

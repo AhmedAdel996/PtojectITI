@@ -33,6 +33,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <link href="~/css/Auth.css" type="text/css" rel="stylesheet" />
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -53,7 +54,7 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="Index.html">Home</a>
+                                <a href="/Home/Index">Home</a>
                             </li>
 
                             <li>
@@ -65,11 +66,11 @@
                             </li>
 
                             <li>
-                                <a href="about.html">About</a>
+                                <a href="/Home/About">About</a>
                             </li>
 
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="/Home/Contact">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -87,6 +88,15 @@
                         <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
+                        <a class="nav-link active myfonts" style="font-family: Poppins-Medium; font-size: 14px; color: #333; padding: 20px 10px 20px 0px; margin: 0px 4px 0px 14px; }" aria-current="true" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button type="submit" class="nav-link btn btn-link text-dark"  style="font-family: Poppins-Medium; font-size: 14px; color: #333; padding: 5px 0px;">Logout</button>
+                                </form>
+
+                        }
+
                     </div>
                 </nav>
             </div>
@@ -168,8 +178,9 @@
         </div>
     </header>
 
-
-    @RenderBody()
+    <div>
+        @RenderBody()
+    </div>
     
     <!-- Footer -->
     <footer class="bg3 p-t-75 p-b-32">

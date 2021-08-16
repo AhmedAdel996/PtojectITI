@@ -1,0 +1,24 @@
+﻿.auth{
+    margin-top: 90px;
+    margin-bottom: 10px
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.nav-link{
+    font-size:20px;
+    font-weight:bold
+}
+.remember {
+    display: inline;
+}
+
+.myfonts {
+    font-family: Poppins-Medium;
+    font-size: 14px;
+    color: #333;
+    padding: 5px 0px;
+}
