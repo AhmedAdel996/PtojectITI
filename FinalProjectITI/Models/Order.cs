@@ -17,6 +17,7 @@ namespace FinalProjectITI.Models
         public string Customer_ID { get; set; }
         public int? Shipping_ID { get; set; }
         public int? Payment_ID { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Order_Total { get; set; }
         public int Order_Status { get; set; }
 

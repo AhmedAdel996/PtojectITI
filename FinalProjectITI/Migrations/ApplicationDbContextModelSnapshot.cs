@@ -16,8 +16,54 @@ namespace FinalProjectITI.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("FinalProjectITI.Models.Blog", b =>
+                {
+                    b.Property<int>("Blog_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Blog_Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Blog_Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Blog_Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Blog_ID");
+
+                    b.ToTable("Blog");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.BlogTags", b =>
+                {
+                    b.Property<int>("BlogTags_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Blog_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tag_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlogTags_ID");
+
+                    b.HasIndex("Blog_ID");
+
+                    b.HasIndex("Tag_ID");
+
+                    b.ToTable("BlogTags");
+                });
 
             modelBuilder.Entity("FinalProjectITI.Models.Category", b =>
                 {
@@ -39,24 +85,61 @@ namespace FinalProjectITI.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.CategoryType", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.Comment", b =>
                 {
-                    b.Property<int>("CategoryType_ID")
+                    b.Property<int>("Comment_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryType_Description")
+                    b.Property<int>("Blog_ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Comment_Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Customer_ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryType_Name")
+                    b.HasKey("Comment_ID");
+
+                    b.HasIndex("Blog_ID");
+
+                    b.HasIndex("Customer_ID");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Images", b =>
+                {
+                    b.Property<int>("Images_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image1")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CategoryType_ID");
+                    b.Property<string>("Image2")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.ToTable("CategoryType");
+                    b.Property<string>("Image3")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Images_ID");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Order", b =>
@@ -106,6 +189,9 @@ namespace FinalProjectITI.Migrations
                     b.Property<int>("Product_ID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Product_Quantity")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Total_price")
                         .HasColumnType("decimal(18,2)");
 
@@ -125,10 +211,7 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Payment_Method")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Payment_Status")
+                    b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
                     b.HasKey("Payment_ID");
@@ -143,19 +226,23 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Adding_Date")
+                        .HasColumnType("date");
+
                     b.Property<int?>("Category_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Product_Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Images_ID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Product_Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Popularity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Product_Color")
+                        .HasColumnType("int");
 
                     b.Property<string>("Product_Name")
                         .IsRequired()
@@ -169,33 +256,38 @@ namespace FinalProjectITI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Stored_Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Product_ID");
 
                     b.HasIndex("Category_ID");
 
+                    b.HasIndex("Images_ID");
+
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.ProductCategoryTypes", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.ProductTags", b =>
                 {
-                    b.Property<int>("ProductCategoryTypes_ID")
+                    b.Property<int>("ProductTags_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryType_ID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Product_ID")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductCategoryTypes_ID");
+                    b.Property<int?>("Tag_ID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CategoryType_ID");
+                    b.HasKey("ProductTags_ID");
 
                     b.HasIndex("Product_ID");
 
-                    b.ToTable("ProductCategoryTypes");
+                    b.HasIndex("Tag_ID");
+
+                    b.ToTable("ProductTags");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Shipping", b =>
@@ -205,40 +297,30 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address1")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Address2")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("City")
-                        .HasColumnType("int");
-
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Phone1")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("Phone2")
+                    b.Property<long>("Phone")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("Postal_Code")
                         .HasColumnType("int");
 
-                    b.Property<string>("Shipping_Email")
+                    b.Property<string>("Shipper_Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Shipping_FName")
+                    b.Property<string>("Shipper_FName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Shipping_LName")
+                    b.Property<string>("Shipper_LName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -248,9 +330,29 @@ namespace FinalProjectITI.Migrations
                     b.ToTable("Shipping");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.UserProducts", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.Tags", b =>
                 {
-                    b.Property<int>("UserProducts_ID")
+                    b.Property<int>("Tag_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Tag_Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tag_Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Tag_ID");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.UserWishList", b =>
+                {
+                    b.Property<int>("UserWishList_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -262,67 +364,13 @@ namespace FinalProjectITI.Migrations
                     b.Property<int>("Product_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Product_Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserProducts_ID");
+                    b.HasKey("UserWishList_ID");
 
                     b.HasIndex("Customer_ID");
 
                     b.HasIndex("Product_ID");
 
-                    b.ToTable("UserProducts");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("UserWishList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -334,12 +382,10 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -351,12 +397,10 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -374,104 +418,45 @@ namespace FinalProjectITI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("IdentityUser");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.BlogTags", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasOne("FinalProjectITI.Models.Blog", "Blog")
+                        .WithMany("BlogTags")
+                        .HasForeignKey("Blog_ID");
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasOne("FinalProjectITI.Models.Tags", "Tags")
+                        .WithMany("BlogTags")
+                        .HasForeignKey("Tag_ID");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Blog");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
+                    b.Navigation("Tags");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.Comment", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                    b.HasOne("FinalProjectITI.Models.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("Blog_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
+                        .WithMany()
+                        .HasForeignKey("Customer_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Blog");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Order", b =>
@@ -522,25 +507,31 @@ namespace FinalProjectITI.Migrations
                         .WithMany("Products")
                         .HasForeignKey("Category_ID");
 
+                    b.HasOne("FinalProjectITI.Models.Images", "Images")
+                        .WithMany("Products")
+                        .HasForeignKey("Images_ID");
+
                     b.Navigation("Category");
+
+                    b.Navigation("Images");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.ProductCategoryTypes", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.ProductTags", b =>
                 {
-                    b.HasOne("FinalProjectITI.Models.CategoryType", "CategoryType")
-                        .WithMany("ProductCategoryTypes")
-                        .HasForeignKey("CategoryType_ID");
-
                     b.HasOne("FinalProjectITI.Models.Product", "Product")
-                        .WithMany("ProductCategoryTypes")
+                        .WithMany("ProductTags")
                         .HasForeignKey("Product_ID");
 
-                    b.Navigation("CategoryType");
+                    b.HasOne("FinalProjectITI.Models.Tags", "Tags")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("Tag_ID");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Tags");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.UserProducts", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.UserWishList", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
                         .WithMany()
@@ -549,7 +540,7 @@ namespace FinalProjectITI.Migrations
                         .IsRequired();
 
                     b.HasOne("FinalProjectITI.Models.Product", "Product")
-                        .WithMany("UserProducts")
+                        .WithMany("UserWishLists")
                         .HasForeignKey("Product_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -559,55 +550,11 @@ namespace FinalProjectITI.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.Blog", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.Navigation("BlogTags");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Category", b =>
@@ -615,9 +562,9 @@ namespace FinalProjectITI.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("FinalProjectITI.Models.CategoryType", b =>
+            modelBuilder.Entity("FinalProjectITI.Models.Images", b =>
                 {
-                    b.Navigation("ProductCategoryTypes");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Order", b =>
@@ -634,14 +581,21 @@ namespace FinalProjectITI.Migrations
                 {
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("ProductCategoryTypes");
+                    b.Navigation("ProductTags");
 
-                    b.Navigation("UserProducts");
+                    b.Navigation("UserWishLists");
                 });
 
             modelBuilder.Entity("FinalProjectITI.Models.Shipping", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("FinalProjectITI.Models.Tags", b =>
+                {
+                    b.Navigation("BlogTags");
+
+                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }
